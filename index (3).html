@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Midterm Lab Task 3 - Excel Dashboard</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(120deg, #000 30%, #020f1f 70%);
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0a0a0a;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 0 10px white;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes color-change {
+      0% {
+        color: white;
+      }
+      50% {
+        color: #00f0ff;
+      }
+      100% {
+        color: white;
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      animation: color-change 10s ease-in-out infinite;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00f0ff;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2.section-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid white;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .step-process {
+      margin-top: 20px;
+    }
+
+    .step-process ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .step-process h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .step-process ul li {
+      margin: 10px 0;
+    }
+
+    .step-process ul li h4 {
+      margin-bottom: 5px;
+    }
+
+    .step-process ul li ul {
+      list-style: disc;
+      margin-left: 20px;
+    }
+
+    .step-process ul li ul li {
+      margin: 5px 0;
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-radius: 10px;
+      border: 2px solid white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      cursor: pointer;
+    }
+
+    .project-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.8);
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #00f0ff, #007fff);
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    .download-btn i {
+      margin-right: 10px;
+    }
+
+    .download-btn:hover {
+      background: white;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid white;
+      background: #0a0a0a;
+      margin-top: 40px;
+      color: #aaa;
+    }
+
+    .preview-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      backdrop-filter: blur(10px);
+    }
+
+    .preview-modal img {
+      max-width: 80%;
+      max-height: 80%;
+      transition: transform 0.3s ease;
+    }
+
+    .preview-modal.show {
+      display: flex;
+    }
+
+    .preview-modal .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+      color: white;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      border-radius: 50%;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .preview-modal .close-btn:hover {
+      background: rgba(255, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Midterm Lab Task 3 - Excel Dashboard</h1>
+    <nav>
+      <a href="https://austincgarcia.github.io/AustinEDM/">Back to Portfolio</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2 class="section-title">Project Overview</h2>
+    <p>This portfolio demonstrates how to create an interactive Excel dashboard that tracks Data Science salary trends and job patterns using pivot tables, charts, slicers, and a map.</p>
+
+    <a href="https://github.com/user-attachments/files/19254801/Dashboard.-.Garcia.xlsx" class="download-btn" target="_blank">
+      <i class="fas fa-file-download"></i> Download Dataset
+    </a>
+
+    <div class="step-process">
+      <h3>Step-by-Step Process</h3>
+      <ul>
+        <li>
+          <h4>Use the given data</h4>
+          <ul>
+            <li>Open the worksheet on Uncleaned DS Jobs and the transform tables: Sal By Role, Sal By State, Sal By Size</li>
+          </ul>
+        </li>
+        <li>
+          <h4>Design the dashboard to highlight the following</h4>
+          <ul>
+            <li>State with the most Data Science jobs</li>
+            <li>Job role with the highest average salary</li>
+            <li>Company size that pays the highest salary</li>
+            <li>Sector with the lowest & highest number of Data Science jobs</li>
+            <li>Sector with the minimum & maximum average salary</li>
+          </ul>
+        </li>
+        <li>
+          <h4>Create a pivot table</h4>
+          <ul>
+            <li>Use pivot tables to summarize data for sector jobs and salary</li>
+          </ul>
+        </li>
+        <li>
+          <h4>Generate charts for reports</h4>
+          <ul>
+            <li>Use bar, column, or pie charts to visualize salary trends and job distribution</li>
+          </ul>
+        </li>
+        <li>
+          <h4>Insert slicers for filtering</h4>
+          <ul>
+            <li>Add slicers for role type, company size, and state to make the dashboard interactive</li>
+          </ul>
+        </li>
+        <li>
+          <h4>Add a map (optional)</h4>
+          <ul>
+            <li>Insert a map visualization if your Excel version supports it</li>
+          </ul>
+        </li>
+        <li>
+          <h4>Apply design & formatting</h4>
+          <ul>
+            <li>Customize the colors, fonts, and layout for a visually appealing dashboard</li>
+          </ul>
+        </li>
+        <li>
+          <h4>Complete the dashboard</h4>
+          <ul>
+            <li>Ensure all visuals are included and the slicers are functional</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Screenshots During Analysis</h2>
+
+    <h3>Sal by Role Type</h3>
+    <img src="https://github.com/user-attachments/assets/e4e1b902-c140-4ace-894b-4c6a6ac77914" alt="Sal by Role Type" class="project-image" onclick="openPreview(this)">
+
+    <h3>Sal by Size</h3>
+    <img src="https://github.com/user-attachments/assets/f5f02725-64e2-4dd8-a339-5ca30897a3e6" alt="Sal by Size" class="project-image" onclick="openPreview(this)">
+
+    <h3>Sal by State</h3>
+    <img src="https://github.com/user-attachments/assets/3c605257-86b8-4781-8e2b-cc8d5568c82e" alt="Sal by State" class="project-image" onclick="openPreview(this)">
+
+    <h3>Sector by Size</h3>
+    <img src="https://github.com/user-attachments/assets/2c6be558-4bfb-496e-b6d7-9363132079c1" alt="Sector by Size" class="project-image" onclick="openPreview(this)">
+
+    <h3>Sector by Salary</h3>
+    <img src="https://github.com/user-attachments/assets/875f80d2-0831-4d17-8ab8-a7a5e4a18f57" alt="Sector by Salary" class="project-image" onclick="openPreview(this)">
+
+    <h3>Dashboard</h3>
+    <img src="https://github.com/user-attachments/assets/4be80393-f3e9-4c27-ba48-f1f60ebd5af8" alt="Dashboard 1" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/7ba741ec-0662-481e-a0dc-f35c82e57a68" alt="Dashboard 2" class="project-image" onclick="openPreview(this)">
+
+    <h3>Map</h3>
+    <img src="https://github.com/user-attachments/assets/71b7b40b-e242-46d4-a119-e150599e97cf" alt="Map" class="project-image" onclick="openPreview(this)">
+  </section>
+
+  <footer>
+    <p>© 2025 Austin's EDM Portfolio. All rights reserved.</p>
+  </footer>
+
+  <div id="preview-modal" class="preview-modal">
+    <button class="close-btn" onclick="closePreview()">×</button>
+    <img id="preview-image" src="" alt="Preview Image">
+  </div>
+
+  <script>
+    function openPreview(image) {
+      var modal = document.getElementById("preview-modal");
+      var previewImage = document.getElementById("preview-image");
+      previewImage.src = image.src;
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePreview() {
+      var modal = document.getElementById("preview-modal");
+      modal.classList.remove("show");
+      document.body.style.overflow = "auto";
+    }
+  </script>
+
+</body>
+</html>
